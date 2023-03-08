@@ -12,7 +12,8 @@
     "start": "tsc && node build/api/server.js",
     "dev": "clear && nodemon --exec ts-node src/api/server.ts",
     "test": "vitest",
-    "db:reset": "npx -y tsc && npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all"
+    "db:reset": "npx -y tsc && npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
+    "db:populate": "npx sequelize db:migrate && npx sequelize db:seed:all"
   },
   "dependencies": {
     "@hapi/boom": "9.1.4",
