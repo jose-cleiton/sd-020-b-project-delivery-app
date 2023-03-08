@@ -45,6 +45,34 @@ export default  class Users {
     return this.props.updated_at;
   }
 
+  
+  public set name(name: string) {
+    this.props.name = name;
+  }
+  
+  public set email(email: string) {
+    this.props.email = email;
+  }
+  
+  public set password(password: string) { 
+    this.props.password = password;
+  }
+  
+
+  public set role(role: string) { 
+    this.props.role = role;
+  }
+
+  public set created_at(created_at: Date) { 
+    this.props.created_at = created_at;
+  }
+
+  public set updated_at(updated_at: Date) { 
+    this.props.updated_at = updated_at;
+  }
+
+  
+
 
 constructor(props: usersProps) {
     this.props = props;

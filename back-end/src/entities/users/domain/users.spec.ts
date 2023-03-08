@@ -1,4 +1,6 @@
-import { expect , test } from 'vitest';import Users from './Useres';
+import { expect, test } from 'vitest';
+
+import  Users from './Users';
 
 test('create a user', () => {
   const user = new Users({
