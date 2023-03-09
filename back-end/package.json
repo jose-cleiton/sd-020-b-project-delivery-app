@@ -9,11 +9,12 @@
   "engineStrict": true,
   "private": true,
   "scripts": {
-    "pd": "sudo chmod -R 777 ./data", 
+    "modules": "sequelize-auto -o \"./src/database/models\" -d delivery-app-dev -h localhost -p 3306 -u root -x 123456 -e mysql",
+    "pd": "sudo chmod -R 777 ./data",
     "start": "tsc && node build/api/server.js",
     "dev": "clear && nodemon --exec ts-node src/api/server.ts",
     "test": "vitest",
-    "db:reset": "npx -y tsc && npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
+    "db:reset": "npx -y tsc && npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all && npm run pd",
     "db:populate": "npx sequelize db:migrate && npx sequelize db:seed:all"
   },
   "dependencies": {
@@ -28,7 +29,7 @@
     "jsonwebtoken": "8.5.1",
     "md5": "2.3.0",
     "multer": "1.4.4",
-    "mysql2": "2.3.3",
+    "mysql2": "^2.3.3",
     "sequelize": "6.17.0",
     "socket.io": "4.4.1"
   },
