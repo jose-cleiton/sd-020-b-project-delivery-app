@@ -41,4 +41,4 @@ services:
     cap_add:
       - SYS_NICE # Deve omitir alertas menores
     volumes:
-      - ./db:/path/to/db:rw,chown=$(id -u):$(id -g)
+      - ./data:/var/lib/mysql
