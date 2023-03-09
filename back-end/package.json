@@ -9,6 +9,7 @@
   "engineStrict": true,
   "private": true,
   "scripts": {
+    "pd": "sudo chmod -R 777 ./data", 
     "start": "tsc && node build/api/server.js",
     "dev": "clear && nodemon --exec ts-node src/api/server.ts",
     "test": "vitest",

@@ -42,3 +42,4 @@ services:
       - SYS_NICE # Deve omitir alertas menores
     volumes:
       - ./data:/var/lib/mysql
+   
