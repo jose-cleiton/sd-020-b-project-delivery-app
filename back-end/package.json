@@ -9,7 +9,8 @@
   "engineStrict": true,
   "private": true,
   "scripts": {
-    "modules": "sequelize-auto -o \"./src/database/models\" -d delivery-app-dev -h localhost -p 3306 -u root -x 123456 -e mysql",
+    "modules": "sequelize-auto -o ${DIR} -d ${DB_NAME} -h ${DB_HOST} -p ${DB_PORT} -u ${DB_USER} -x ${DB_PASS} -e ${DIALECT}",
+
     "pd": "sudo chmod -R 777 ./data",
     "start": "tsc && node build/api/server.js",
     "dev": "clear && nodemon --exec ts-node src/api/server.ts",
