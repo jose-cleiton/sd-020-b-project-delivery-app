@@ -8,9 +8,13 @@
   },
   "engineStrict": true,
   "private": true,
-  "scripts": {   
+  "scripts": {
+    "print-env": "echo $DB_PORT",
+    
+    "md":"sequelize-auto -h localhost -d delivery-app  -u root -x $DB_PASS  -p ${DB_PORT}   --dialect ${DIALECT} -o  ${PWD}/src/database/models ",
 
-    "modules": "sequelize-auto -o \"./src/database/models\" -d delivery-app -h localhost -p 3306 -u root -x 123456 -e mysql",
+    
+
     "pd": "sudo chmod -R 777 ./data",
     "start": "tsc && node build/api/server.js",
     "dev": "clear && nodemon --exec ts-node src/api/server.ts",
@@ -23,6 +27,7 @@
     "@types/express": "4.17.13",
     "body-parser": "1.19.2",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "4.17.3",
     "express-rescue": "1.1.31",
     "http-status-codes": "^2.2.0",
@@ -51,7 +56,6 @@
     "chai": "4.3.6",
     "chai-as-promised": "7.1.1",
     "chai-http": "4.3.0",
-    "dotenv": "^16.0.0",
     "eslint": "7.32.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-airbnb-typescript": "15.0.0",
