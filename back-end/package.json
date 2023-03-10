@@ -10,11 +10,7 @@
   "private": true,
   "scripts": {
     "print-env": "echo $DB_PORT",
-    
-    "md":"sequelize-auto -h localhost -d delivery-app  -u root -x $DB_PASS  -p ${DB_PORT}   --dialect ${DIALECT} -o  ${PWD}/src/database/models ",
-
-    
-
+    "md": "sequelize-auto -h localhost -d delivery-app  -u root -x $DB_PASS  -p ${DB_PORT}   --dialect ${DIALECT} -o  ${PWD}/src/database/models ",
     "pd": "sudo chmod -R 777 ./data",
     "start": "tsc && node build/api/server.js",
     "dev": "clear && nodemon --exec ts-node src/api/server.ts",
@@ -48,6 +44,7 @@
     "@types/http-status-codes": "^1.2.0",
     "@types/jest": "^27.4.1",
     "@types/joi": "17.2.3",
+    "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "16.11.7",
     "@types/sinon": "10.0.11",
     "@types/supertest": "2.0.11",
