@@ -1,5 +1,9 @@
-module.exports = {
-  up: async (queryInterface, Sequelize) => {
+import { QueryInterface, DataTypes, Sequelize } from 'sequelize';
+
+
+
+
+export const up = async (queryInterface:QueryInterface, Sequelize:any) => {
    await queryInterface.createTable('products', {
      id: {
        allowNull: false,
@@ -20,9 +24,10 @@ module.exports = {
        type: Sequelize.STRING,
      }
    })
-  },
+};
+  
 
-  down: async (queryInterface, Sequelize) => {
+
+  export const down = async (queryInterface: QueryInterface) => {
     await queryInterface.dropTable('products')
   }
-};

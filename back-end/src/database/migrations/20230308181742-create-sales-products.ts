@@ -1,7 +1,7 @@
-'use strict';
+import { QueryInterface, DataTypes } from 'sequelize';
 
-module.exports = {
-  up: async (queryInterface, Sequelize) => {
+
+ export const up = async (queryInterface:QueryInterface, Sequelize:any) => {
     await queryInterface.createTable('sales_products', {
       sale_id: {
         type: Sequelize.INTEGER,
@@ -26,9 +26,8 @@ module.exports = {
         type: Sequelize.INTEGER,
       }
     })
-  },
+  }
 
-  down: async (queryInterface, Sequelize) => {
+  const down = async (queryInterface:QueryInterface) => {
     await queryInterface.dropTable('sales_products');
   }
-};
