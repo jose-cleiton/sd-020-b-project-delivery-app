@@ -1,17 +1,14 @@
 import express from 'express';
-
-import Database  from '../database/config/database';
-import { UserService } from './users-service';
-import UserRepository from './UsersRepository';
+import Database from '../database/config/database';
+import UserService from './users-service';
 
 const app = express();
-const port = process.env.DB_PORT || 3000;
+const port = 3000;
 
-const database = Database.getInstance();
-const userRepository = new UserRepository(database.getSequelize());
-const userService = new UserService(userRepository);
+const sequelize = Database.getInstance();
+const userService = new UserService(sequelize);
 
-app.get('/users', async (req, res) => {
+app.get('/users', async (_req, res) => {
   const users = await userService.getAllUsers();
   res.send(users);
 });

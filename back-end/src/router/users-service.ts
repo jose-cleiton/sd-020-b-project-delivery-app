@@ -1,16 +1,18 @@
-import { usersAttributes } from '../database/models/users';
-import UserRepository from './UsersRepository';
+import { users, usersAttributes } from '../database/models/users';
+import { Sequelize } from 'sequelize';
 
-export class UserService {
-  constructor(private userRepository: UserRepository) {}
+export default class UserService {
+  private userModel: typeof users;
+
+  constructor(private sequelize: Sequelize) {
+    this.userModel = users.initModel(sequelize);
+  }
 
   async getAllUsers(): Promise<usersAttributes[]> {
-    const users = await this.userRepository.findAll();
-    return users;
+    return this.userModel.findAll();
   }
 
   async getUserById(id: number): Promise<usersAttributes | null> {
-    const user = await this.userRepository.findById(id);
-    return user;
+    return this.userModel.findByPk(id);
   }
 }

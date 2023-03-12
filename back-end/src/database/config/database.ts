@@ -1,48 +1,26 @@
+require('dotenv').config();
+
 import { Sequelize } from 'sequelize';
-import dotenv from 'dotenv';
 
-dotenv.config();
+export default class Database {
+  private static instance: Sequelize;
 
-class Database {
-  private static instance: Database;
-  private sequelize: Sequelize;
+  private constructor() {}
 
-  private constructor() {
-    const dbName = process.env.DB_NAME || 'delivery-app';
-    const dbUser = process.env.DB_USER || 'root';
-    const dbPass = process.env.DB_PASS || '123456';
-    const dbHost = process.env.DB_HOST || 'localhost';
-    const dbPort = parseInt(process.env.DB_PORT || '3000');
-    const dbDialect = process.env.DB_DIALECT as 'mysql' || 'mysql';
-  
-    this.sequelize = new Sequelize(dbName, dbUser, dbPass, {
-      host: dbHost,
-      port: dbPort,
-      dialect: dbDialect,
-    });
-  }
-  
-
-  public static getInstance(): Database {
+  static getInstance(): Sequelize {
     if (!Database.instance) {
-      Database.instance = new Database();
+      Database.instance = new Sequelize(
+        process.env.DB_NAME || 'delivery-app',
+        process.env.DB_USER || 'root',
+        process.env.DB_PASSWORD || '123456',
+        {
+          host: process.env.DB_HOST,
+          port: Number(process.env.DB_PORT) || 3306,
+          dialect: 'mysql',
+        }
+      );
     }
 
     return Database.instance;
   }
-
-  public async connect(): Promise<void> {
-    try {
-      await this.sequelize.authenticate();
-      console.log('Database connection established');
-    } catch (error) {
-      console.error('Unable to connect to the database:', error);
-    }
-  }
-
-  public getSequelize(): Sequelize {
-    return this.sequelize;
-  }
 }
-
-export default Database;

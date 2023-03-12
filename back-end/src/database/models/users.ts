@@ -47,7 +47,7 @@ export class users extends Model<usersAttributes, usersCreationAttributes> imple
   hasSeller_sales!: Sequelize.HasManyHasAssociationsMixin<sales, salesId>;
   countSeller_sales!: Sequelize.HasManyCountAssociationsMixin;
 
-  static initModel(sequelize: Sequelize.Sequelize): typeof users {
+ public static initModel(sequelize: Sequelize.Sequelize): typeof users {
     return users.init({
     id: {
       autoIncrement: true,
