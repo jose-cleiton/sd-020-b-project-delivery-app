@@ -1,6 +1,6 @@
 import express, { Express } from 'express';
 import Database from '../database/config/database';
-import AppRouter from '../router/router';
+import AppRouter from './router/router';
 
 import { ExpressAsyncErrorMiddleware } from '../middlewares/express-async-errors.middleware';
 
