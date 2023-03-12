@@ -1,8 +1,6 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 import { ExpressAsyncErrorMiddleware } from '../middlewares/express-async-errors.middleware';
-import DeucertoRoute from '../routes/routes';
-import usersRouter from '../router/users';
 
 class App {
   private PORT: number;
@@ -23,10 +21,7 @@ class App {
     this.app.use(express.static('public'));
 
     // Adicione a rota aqui
-    this.app.use('/users', usersRouter);
-
-    this.app.use('/', new DeucertoRoute().router);
-    this.app.use('/deucerto', new DeucertoRoute().router);
+   
 
   }
 
