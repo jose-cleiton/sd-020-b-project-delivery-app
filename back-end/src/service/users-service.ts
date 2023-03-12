@@ -1,5 +1,5 @@
-import { users, usersAttributes } from '../database/models/users';
 import { Sequelize } from 'sequelize';
+import { users, usersAttributes } from '../database/models/users';
 
 export default class UserService {
   private userModel: typeof users;
@@ -10,9 +10,5 @@ export default class UserService {
 
   async getAllUsers(): Promise<usersAttributes[]> {
     return this.userModel.findAll();
-  }
-
-  async getUserById(id: number): Promise<usersAttributes | null> {
-    return this.userModel.findByPk(id);
   }
 }

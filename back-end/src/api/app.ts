@@ -1,28 +1,27 @@
-import express, { Application } from 'express';
-import cors from 'cors';
+import express, { Express } from 'express';
+import Database from '../database/config/database';
+import AppRouter from '../router/router';
+
 import { ExpressAsyncErrorMiddleware } from '../middlewares/express-async-errors.middleware';
 
 class App {
-  private PORT: number;
-  public app: Application;
+  private app: Express;
+  private PORT: number | string;
+  private sequelize: any; // ou tipo mais específico dependendo da implementação do Database
+  private appRouter: AppRouter;
 
   constructor() {
-    this.PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3001;
     this.app = express();
+    this.PORT = process.env.PORT || 3000;
+    this.sequelize = Database.getInstance();
+    this.appRouter = new AppRouter(this.sequelize);
 
     this.config();
-    this.startMiddlewares();
   }
 
-  private config(): void {
+  private config() {
     this.app.use(express.json());
-    this.app.use(cors());
-    this.app.use(express.urlencoded({ extended: true }));
-    this.app.use(express.static('public'));
-
-    // Adicione a rota aqui
-   
-
+    this.app.use(this.appRouter.router);
   }
 
   private startMiddlewares(): void {
