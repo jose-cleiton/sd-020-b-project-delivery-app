@@ -2,13 +2,7 @@ require("dotenv").config();
 
 const environment = process.env.NODE_ENV || "test";
 
-const suffix = {
-  prod: "",
-  production: "",
-  dev: "-dev",
-  development: "-dev",
-  test: "-test",
-};
+
 
 const options = {
   host: process.env.DB_HOST || "localhost",
@@ -24,14 +18,4 @@ const options = {
   logging: false,
 };
 
-module.exports = {
-  development: {
-    ...options,
-  },
-  test: {
-    ...options,
-  },
-  production: {
-    ...options,
-  },
-};
+module.exports = options;
