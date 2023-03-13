@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize';
-import { users, usersAttributes } from '../../../database/models/users';
+import { users, usersAttributes } from '../models/users';
 
 export default class UserService {
   private userModel: typeof users;
