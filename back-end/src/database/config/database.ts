@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 import { Sequelize } from 'sequelize';
+import { users } from '../../api/mvc/models/users';
 
 export default class Database {
   private static instance: Sequelize;
@@ -22,5 +23,10 @@ export default class Database {
     }
 
     return Database.instance;
+  }
+
+  static getUsersModel(): typeof users {
+    const sequelize = Database.getInstance();
+    return users.initModel(sequelize);
   }
 }
