@@ -15,7 +15,7 @@
     "start": "tsc && node build/api/server.js",
     "dev": "clear && nodemon --exec ts-node src/api/server.ts",
     "test": "vitest",
-    "db:reset": "npx -y tsc && npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all && npm run pd && npm run modules",
+    "db:reset": "npx -y tsc && npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all && npm run pd && npm run md",
     "db:populate": "npx sequelize db:migrate && npx sequelize db:seed:all"
   },
   "dependencies": {
@@ -64,7 +64,7 @@
     "eslint-plugin-sonarjs": "0.10.0",
     "jest": "27.5.1",
     "mocha": "9.2.2",
-    "nodemon": "2.0.15",
+    "nodemon": "^2.0.15",
     "nyc": "15.1.0",
     "sequelize-cli": "6.4.1",
     "sinon": "13.0.1",

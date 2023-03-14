@@ -1,38 +1,30 @@
-import express, { Express } from 'express';
-import Database from '../database/config/database';
-import AppRouter from './router/router';
-
-import { ExpressAsyncErrorMiddleware } from '../middlewares/express-async-errors.middleware';
+import express, { Request, Response, NextFunction } from 'express';
+import { StatusCodes } from 'http-status-codes';
 
 class App {
-  private app: Express;
-  private PORT: number | string;
-  private sequelize: any; // ou tipo mais específico dependendo da implementação do Database
-  private appRouter: AppRouter;
+  public app = express();
+  public port = process.env.APP_PORT || 3001;
 
   constructor() {
-    this.app = express();
-    this.PORT = process.env.PORT || 3000;
-    this.sequelize = Database.getInstance();
-    this.appRouter = new AppRouter(this.sequelize);
-
-    this.config();
-  }
-
-  private config() {
+    // Adicionar os middlewares de body-parser e cors
     this.app.use(express.json());
-    this.app.use(this.appRouter.router);
-  }
+    this.app.use(express.urlencoded({ extended: false }));
 
-  private startMiddlewares(): void {
-    this.app.use(ExpressAsyncErrorMiddleware.handle);
-  }
-
-  public start(): void {
-    this.app.listen(this.PORT, () => {
-      console.log(`🚀 Server started on port ${this.PORT}, http://localhost:${this.PORT}`);
+    this.app.get('/', (req: Request, res: Response) => {
+      res.status(StatusCodes.OK).json({ message: 'Hello World!!' });
     });
+
+   
+
+     
+  
+    // middleware errorHandler para lidar com erros personalizados
+
+    this.app.listen(this.port, () => {
+      console.clear();
+      console.log(`🚀 Server started on port ${this.port}, http://localhost:${this.port}`);
+    })
   }
 }
 
-export { App }
+export default App;

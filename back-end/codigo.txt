@@ -1,0 +1,27 @@
+/home/jose/dev/sd-020-b-project-delivery-app/back-end/src/api/mvc/service/users-service.ts
+import { Sequelize } from 'sequelize';
+import { users, usersAttributes } from '../models/users';
+
+export default class UserService {
+  private userModel: typeof users;
+
+  constructor(private sequelize: Sequelize) {
+    this.userModel = users.initModel(sequelize);
+  }
+
+  async getAllUsers(): Promise<usersAttributes[]> {
+    return this.userModel.findAll();
+  }
+}
+import { Sequelize } from 'sequelize';
+import { Op } from 'sequelize';
+import { IUserService } from '../../interface/interfaces';
+import { HttpException } from '../../../errors/http-exception.error';
+import { HashHelper } from '../../../helpers/hash-helper';
+import { JwtHelper } from '../../../helpers/jwt-helper';
+
+ public start(): void {
+    this.app.listen(this.PORT, () => {
+      console.log(`🚀 Server started on port ${this.PORT}, http://localhost:${this.PORT}`);
+    });
+  }
