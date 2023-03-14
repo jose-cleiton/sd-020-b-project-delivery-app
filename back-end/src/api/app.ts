@@ -1,6 +1,5 @@
-import express, { Request, Response, NextFunction } from 'express';
-import { StatusCodes } from 'http-status-codes';
-
+import express from 'express';
+import  {RouterHelloWord}  from '../routes/RouterHelloWord';
 class App {
   public app = express();
   public port = process.env.APP_PORT || 3001;
@@ -10,14 +9,10 @@ class App {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
 
-    this.app.get('/', (req: Request, res: Response) => {
-      res.status(StatusCodes.OK).json({ message: 'Hello World!!' });
-    });
+    // Adicionar as rotas
+    const homeController = new RouterHelloWord();
+    this.app.use('/', homeController.router);
 
-   
-
-     
-  
     // middleware errorHandler para lidar com erros personalizados
 
     this.app.listen(this.port, () => {
