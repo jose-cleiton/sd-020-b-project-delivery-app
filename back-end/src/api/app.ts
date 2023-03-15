@@ -1,5 +1,5 @@
 import express from 'express';
-import sequelizeConnection from '../database/config/config';
+
 import  {RouterHelloWord}  from '../routes/RouterHelloWord';
 class App {
   public app = express();
@@ -15,13 +15,7 @@ class App {
     this.app.use('/', homeController.router);
 
     // Adicionar a conexão com o banco de dados
-    sequelizeConnection.sync({ force: true })
-      .then(() => {
-        console.log('Banco de dados criado com sucesso')
-      })
-      .catch((error) => {
-        console.error('Erro ao criar o banco de dados:', error)
-      })
+    
 
     // middleware errorHandler para lidar com erros personalizados
 
