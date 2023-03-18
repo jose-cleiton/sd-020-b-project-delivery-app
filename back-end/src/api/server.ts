@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
+import App from './app';
+
 dotenv.config();
-import { App } from './app';
 
 class Server {
   private app: App;
@@ -10,7 +11,7 @@ class Server {
   }
 
   public start(): void {
-    this.app.start();
+    // Não é necessário chamar nenhum método adicional para iniciar a aplicação
   }
 }
 
